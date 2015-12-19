@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<style type="text/css">
+		*{margin:0;padding:0;font-family: "微软雅黑";font-size: 12px;}
+		 #container{width:900px}
+		 #container #header {background-color:#2D2B2B;height:20px;}
+		 #content {background-color:#EEEEEE; height:560px; width:600px; float:left;}
+		 #menu {background-color:#4E4545; height:560px; width:300px; float:left;overflow:auto;}
+		 #footer {background-color:#2D2B2B; clear:both; text-align:center;color: #fff;cursor: pointer;}
+		 #menu_head{background-color:#404040;height:35px; width:300px;color:#8E8C8C;padding-top:10px;font-size:20px;}
+		 .m_btn{display: inline-block; 
+		 		width: 45px;height: 25px;
+		 		line-height:25px;
+		 		background: #404040;
+		 		text-decoration: none;color:#8E8C8C;}
+		 .m_btn:hover{color: #0D1010}
+		h1#head_text {margin-bottom:0;text-align:center;color: #fff;float: left;cursor: pointer;}
+		h1#esc_ {color: #fff; float: right; margin-right: 8px;}
+		h2 {margin-bottom:0; font-size:14px;}
+		ul {margin-right:0;margin-top:3px;margin-bottom:3px;}
+		li {list-style:none;color:#FFFFFF;font-size:20px;margin-left: 6px; margin-right: 6px; 
+			font-family: "微软雅黑";
+    		font-size: 16px;margin-bottom: inherit;
+    	}
+		ul li:hover{background: #2D2B2B;cursor: pointer;}
+		h1#esc_:hover{color: #CC3030;cursor: pointer;}
+		#container #menu #menu_head input{
+			background:transparent;
+		    padding-left: 9px;
+			padding-right: 9px;
+			border-radius:25px;
+			-moz-border-radius:25px; /* 老的 Firefox */
+			color: #fff;
+		}
+
+	</style>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script> 
+	<script type="text/javascript" >
+		$(function(){
+			//搜索文本框效果
+			$("#finad_mv").focus(function(){$(this).val('')})
+			.blur(function(){
+				var $this = $(this);
+				($this.val() === '') ? $this.val('搜索....'): null;
+			});
+
+			//Ajax返回数据代码块  -----------------------------------重写------------
+				$("#menu_ul").empty();
+				//循环体
+				for(var i=1;i<4;i++){
+
+					$("#menu_ul").append("<li id='li_"+i+"'>fileName"+i+"</li>");
+					//data key=文件名 value= url
+					$("#li_"+ i).data('fileName'+i,'video01.mp4');
+				}
+				// -----------------------------------------------------------------------
+
+			//点击文件事件
+			$("#menu_ul li").each(function(i){
+				$(this).click(function(){
+					var url_key = $(this).text();
+					var url = $(this).data(url_key);
+					$("video").attr({src:url,autoplay:'autoplay'});
+				});
+
+			});
+
+			//点击X事件
+			$("#esc_").click(function(){
+					alert('cloes window !');
+			});
+
+			//点击搜索事件
+			$("#find_button").click(function(){
+
+			});
+
+		});
+		
+
+	</script>
+
+</head>
+
+<body>
+
+<div id="container">
+
+	<div id="header">
+		<h1 id="head_text">BOBO视频</h1><h1 id="esc_">X</h1>
+	</div>
+	<div id="content">
+		<video width="600" height="560" controls="controls"  src="video01.mp4" >
+				Your browser does not support the video tag.
+		</video>
+	</div>
+
+	<div id="menu" >
+		<div id = "menu_head" >
+			<span>&nbsp视频+</span> 
+			<input id="finad_mv" type="text"  style="border:1px solid #FFFFFF" value="搜索...." />
+			<a id="find_button" href="javascript:void(0);" class="m_btn">搜索</a>
+		</div>
+		<ul id = 'menu_ul'>
+			<li>video01.mp4</li>
+			<li>video02.mp4</li>
+			<li>视频qweqwe1</li>
+			<li>视频qweqwewqe1</li>
+			<li>qweqwewewqeqeqwe</li>
+			<li>视频qweqweqw1</li>
+			<li>视频1</li>
+			<li>视频1</li>
+			<li>视频1</li>
+			<li>视频1</li>
+			<li>视频1</li>		
+			<li>视频1</li>
+		</ul>
+		
+	</div>
+	<div id="footer">bobo@sinosoft.com.cn</div>
+</div>
+</body>
+</html>
